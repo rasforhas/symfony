@@ -1,0 +1,50 @@
+{% extends 'main/base.html.twig' %}
+{% block title %}{{ title }}{% endblock %}
+{% block body %}
+    <div class="container-fluid">
+        <div class="row no-gutters justify-content-center mt-5">
+            <div class="col-12 col-lg-6 col-md-6">
+                <h1 class="display-4 text-center">
+                    {{ title }}
+                </h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row no-gutters">
+            <div class="col-12">
+                <h1 class="display-4 text-center mt-5">
+                    <h2 class="col-12 mb-5"> Wszystkie publikacje:</h2>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>{#<a href="{{ path('admin_post', {order:'title', sort: sort}) }}">#}Tytul{#</a><input type="checkbox" name="title">#}</th>
+                            <th>Rok</th>
+                            <th>Kto stworzył</th>
+                            <th>Udział</th>
+                            <th>Points</th>
+                            <th>Konferencja</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for post_item in post %}
+                        <tr>
+                            <td>{{ post_item.title }}</td>
+                            <td>{{ post_item.year|date('Y-m-d') }}</td>
+                            <td>{{ post_item.creator.user }}</td>
+                            <td>{{ post_item.participation }}</td>
+                            <td>{{ post_item.numOfPoints }}</td>
+                            <td>{{ post_item.conference }}</td>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </h1>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
